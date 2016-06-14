@@ -1,198 +1,218 @@
- 
-#include <ogdf/basic/Graph.h>
-#include <ogdf/basic/graph_generators.h>
-#include <ogdf/layered/DfsAcyclicSubgraph.h>
-#include <ogdf/fileformats/GraphIO.h>
-#include <ogdf/layered/OptimalRanking.h>
-#include <ogdf/layered/MedianHeuristic.h>
-#include <ogdf/layered/OptimalHierarchyLayout.h>
+#include <dos.h>
+#include <stdio.h>
+#include <conio.h>
 
-#include <ogdf/energybased/FMMMLayout.h>
-#include <ogdf/energybased/SpringEmbedderKK.h>
-#include <ogdf/energybased/SpringEmbedderFR.h> 
-#include <ogdf/energybased/DavidsonHarelLayout.h>
-#include <ogdf/energybased/FastMultipoleEmbedder.h>
-#include <ogdf\basic\GraphAttributes.h>
-#include <ogdf\energybased\GEMLayout.h>
-#include <ogdf/energybased/multilevelmixer/ModularMultilevelMixer.h>
+#include <sstream>  //for std::istringstream
+#include <iostream>
+#include <fstream>
 
-using namespace ogdf;
-
-string outputPath;
+#include <Drawer.h>
+#include <BundleGenerator.h>
+#include <Converter.h>
 
 
-//FMMM
-void drawWithFMMMLayout(GraphAttributes GA, string outputfilename){
-
-	//	cout << "Drawing with FMMM.\n";
-
-
-	string outputName = outputPath+"FMMM_drawing_" + outputfilename;
-
-	FMMMLayout layout;
- 
-	layout.useHighLevelOptions(true);
-	layout.unitEdgeLength(15.0);
-	layout.newInitialPlacement(true);
-	layout.qualityVersusSpeed(FMMMLayout::qvsGorgeousAndEfficient);
- 
-	layout.call(GA);
-	GraphIO::writeGML(GA, outputName);
-
-}
-
-
-//DavidsonHarel 
-void drawWithDavidsonHarelLayout(GraphAttributes GA, string outputfilename){
-
-	//	cout << "Drawing with DH.\n";
-
-
-	string outputName =outputPath+ "DH_drawing_" + outputfilename;
-	DavidsonHarelLayout  layout;
-	layout.call(GA);
-	GraphIO::writeGML(GA, outputName);
-
-}
-
-//KK 
-void drawWithSpringEmbedderKKLayout(GraphAttributes GA, string outputfilename){
-		
-	//cout << "Drawing with KK.\n";
-
-	string outputName = outputPath+"KK_drawing_" + outputfilename;
-	SpringEmbedderKK layout;
-	layout.setUseLayout(true);
-	layout.call(GA);
-	GraphIO::writeGML(GA, outputName);
-
-}
-
-//GEM
-void drawWithGEMLayout(GraphAttributes GA, string outputfilename){
-
-	//cout << "Drawing with GEM.\n";
-
-	string outputName = outputPath+"GEM_drawing_" + outputfilename;
-	GEMLayout gem;
-	gem.desiredLength(65);
-	gem.call(GA);
-	GraphIO::writeGML(GA, outputName);
-
-}
-
-//FR
-void drawWithFRLayout(GraphAttributes GA, string outputfilename){
-
-	//	cout << "Drawing with FR.\n";
-
-
-	string outputName = outputPath+"FR_drawing_" + outputfilename;
-	SpringEmbedderFR  layout;
-	layout.call(GA);
-	GraphIO::writeGML(GA, outputName);
-
-}
-
-//FMME
-void drawWithFMMELayout(GraphAttributes GA, string outputfilename){
-
-	//	cout << "Drawing with FMME.\n";
-
-
-	string outputName = outputPath+"FMME_drawing_" + outputfilename;
-	FastMultipoleMultilevelEmbedder layout;
-	layout.call(GA);
-	GraphIO::writeGML(GA, outputName);
-
-}
-
-//MMM
-void drawWithMMMLayout(GraphAttributes GA, string outputfilename){
-
-	//cout << "Drawing with MMM.\n";
-
-	string outputName = outputPath+"MMM_drawing_" + outputfilename;
-	ModularMultilevelMixer layout;
-	layout.call(GA);
-	GraphIO::writeGML(GA, outputName);
-
-}
-
-
-void computeDrawingForGraph(string graphFileName){
-
-	string inputGraphName = "graph.gml";
-	string outputGraphName =  inputGraphName;
-
-	Graph G;
-	GraphAttributes GA(G,
-	  GraphAttributes::nodeGraphics |
-	  GraphAttributes::edgeGraphics |
-	  GraphAttributes::nodeLabel |
-	  GraphAttributes::edgeStyle |
-	  GraphAttributes::nodeStyle |
-	  GraphAttributes::nodeTemplate);
-	if (!GraphIO::readGML (GA, G, graphFileName) ) {
-		cerr << "Could not load " << graphFileName << endl;
-		throw 999;
-		return;
+char* getCmdOption(char ** begin, char ** end, const std::string & option)
+{
+	char ** itr = std::find(begin, end, option);
+	if (itr != end && ++itr != end)
+	{
+		return *itr;
 	}
-
-	
-	node v;
-	forall_nodes(v,G){
-		GA.width(v) = GA.height(v) = 10.0;
-		GA.x(v) = rand() % 1000;
-		GA.y(v) = rand() % 1000;	}
-
-	drawWithFMMMLayout(GA, outputGraphName); //FMMM
-	drawWithDavidsonHarelLayout(GA, outputGraphName); //DH
-	drawWithSpringEmbedderKKLayout(GA, outputGraphName); //KK
-	drawWithGEMLayout(GA, outputGraphName); //GEM
-	drawWithFRLayout(GA, outputGraphName); //FR
-	drawWithFMMELayout(GA, outputGraphName); //FMME
-	drawWithMMMLayout(GA, outputGraphName); //MMM
-
-
+	return 0;
 }
+
+
+bool cmdOptionExists(char** begin, char** end, const std::string& option)
+{
+	return std::find(begin, end, option) != end;
+}
+
 
 
 int main(int argc, char* argv[])
 {
 
+	if (cmdOptionExists(argv, argv + argc, "-h"))
+	{
+		// Do stuff
+	}
+
+	char * draw = getCmdOption(argv, argv + argc, "-DRAW");
 	
+	if (draw) {
+
+		char * input = getCmdOption(argv, argv + argc, "-i");
+		char * output = getCmdOption(argv, argv + argc, "-o");
+
+		string algorithms_string = string(draw);
+
+		char * repeat_cmd = getCmdOption(argv, argv + argc, "-c");
+		string repeat_str = string(repeat_cmd);
+		int repeat = std::stoi(repeat_str);
+
+		if (input && output && repeat > 0)
+		{
+			string input_string = string(input);
+			string output_string = string(output);
+
+			try
+			{
+				Drawer drawer;
+				drawer.computeDrawingForGraph(input_string, output_string, algorithms_string, repeat);
+
+			}
+			catch (int e)
+			{
+			}
+
+		}
+		else {
+			cout << "missing input and output (-i -o)";
+			return (-1);
+		}
+
+		return (0);
+	}
+
+
+
+	char * generate = getCmdOption(argv, argv + argc, "-GEN");
+
+	if (generate) {
+
+		char * output = getCmdOption(argv, argv + argc, "-o");
+
+		string gen_string = string(generate);
+		cout << "Generating: " << gen_string;
+
+		if (output)
+		{
+
+
+			string output_string = string(output);
+			cout << "output: " << output_string << "\n";
+
+
+			try
+			{
+				BundleGenerator generator;
+				generator.generatePlanarGraphs(output_string);
+
+			}
+			catch (int e)
+			{
+			}
+
+		}
+		else {
+			cout << "missing output (-o)";
+			return (-1);
+		}
+
+		return (0);
+
+	}
+
+	char * convert = getCmdOption(argv, argv + argc, "-CONVERT");
+
+	if (convert) {
+
+		char * input = getCmdOption(argv, argv + argc, "-i");
+		char * output = getCmdOption(argv, argv + argc, "-o");
+
+		string conversion_string = string(convert);
+
+		if (input && output)
+		{
+			string input_string = string(input);
+			string output_string = string(output);
+
+			try
+			{
+				Converter converter;
+				if (conversion_string.compare("gml2dot") == 0) {
+					converter.convertGMLToDOT(input, output);
+				}
+			}
+			catch (int e)
+			{
+			}
+
+		}
+		else {
+			cout << "missing input and output (-i -o)";
+			return (-1);
+		}
+
+		return (0);
+
+
+	}
+
+
+
+
+	//string generatedGraphsfile = argv[1];
+	//cout << generatedGraphsfile;
+	//generatePlanarGraphs(generatedGraphsfile);
+
+	/*
 	if(argc != 3)
-   {
-	cout << "Missing parameter.\n Usage: filePath outputhPath";
-      return (-1);
-   }
+	{
+		cout << "Missing parameter.\n Usage: INPUTFILE OUTPUTFILE";
+		return (-1);
+	}
+
+
 	
 	string filePath = argv[1];
 	outputPath = argv[2];
 
+	convertGMLToDOT(filePath);
+
+	*/
+
+	/*
+
+	if(argc != 4)
+	{
+		cout << "Missing parameter.\n Usage: filePath outputhPath";
+		return (-1);
+	}
+
+
+
+	string filePath = argv[1];
+	string outputPath = argv[2];
+
+	std::stringstream ss(argv[3]);
+	bool planar = false;
+
+	if(!(ss >> std::boolalpha >> planar)) {
+		// Parsing error.
+		cout << "error parsing Planar param";
+	}
+
 	cout << "Drawing: " << filePath << "\n";
 
-	cout << "Saving in " << outputPath << "\n";
+	if (planar)
+		cout << "using planar alg \n";
+	else
+		cout << "without using planar alg\n";
 
-	 try
-  {
-	computeDrawingForGraph(filePath); 
-	 
+	try
+	{
+		Drawer drawer;
+		drawer.computeDrawingForGraph(filePath, outputPath, false);
+
 	}
-  catch (int e)
-  {
-	  //here you can handle readeing issues for the current graph
-  }
+	catch (int e)
+	{}
 
-	cout << "END.\n";
-	cout << "press a button to close.\n";
+	*/
 
-	string end;
-	cin >> end;
-
-    return 0; 
-
+	//system("pause");
+	return 0;
 
 }
 //end of the main
