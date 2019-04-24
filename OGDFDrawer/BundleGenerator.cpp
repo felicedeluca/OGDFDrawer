@@ -47,19 +47,20 @@ BundleGenerator::~BundleGenerator()
 {
 }
 
-void BundleGenerator::generatePlanarGraphs(string outputPath)
+/*
+void BundleGenerator::generatePlanarGraphsForPlyProject(string outputPath)
 {
 
-	int n[4] = { 50, 100, 150, 200 };
+	int n[5] = {450};
 
 	int dmax = 20;
 	int dmin = 15;
 
 	int d_diff = dmax - dmin;
 
-	int instances = 30;
+	int instances = 10;
 
-	for (int i = 0; i < 4; ++i) {
+	for (int i = 0; i < 1; ++i) {
 
 		int nodes = n[i];
 
@@ -82,7 +83,7 @@ void BundleGenerator::generatePlanarGraphs(string outputPath)
 			stream << std::fixed << std::setprecision(1) << density;
 			string s = stream.str();
 
-			string name = "planar_" + std::to_string(nodes) + "_" + std::to_string(density) + "_" + std::to_string(instance) + ".gml";
+			string name = "planar_" + std::to_string(nodes) + "_" + std::to_string(density) + "_" + std::to_string(instance+1) + ".gml";
 
 
 			GraphIO::writeGML(GA, outputPath + name);
@@ -90,5 +91,61 @@ void BundleGenerator::generatePlanarGraphs(string outputPath)
 		}
 
 	}
+
+}
+*/
+
+void BundleGenerator::generatePlanarGraphs(string outputPath)
+{
+
+	int vertices = 20;
+
+	int n[5] = { vertices };
+
+	int minEdges = vertices;
+	int maxEdges = 3*vertices-6;
+
+	int e_diff = maxEdges - minEdges;
+
+	int instances = 10;
+
+	//for (int i = 0; i < 1; ++i) {
+
+	int nodes = vertices; //n[0];
+
+		for (int instance = 0; instance < instances; ++instance) {
+
+			int edges = (minEdges + (rand() % (e_diff + 1)));
+
+			Graph G;
+			GraphAttributes GA(G,
+				GraphAttributes::nodeGraphics |
+				GraphAttributes::edgeGraphics |
+				GraphAttributes::nodeLabel |
+				GraphAttributes::edgeStyle |
+				GraphAttributes::nodeStyle |
+				GraphAttributes::nodeTemplate);
+
+			GA.setDirected(false);
+			GA.setAllHeight(1.0);
+			GA.setAllWidth(1.0);
+		
+
+			planarConnectedGraph(G, nodes, edges);
+
+
+			std::stringstream stream;
+			stream << std::fixed << std::setprecision(1) << edges;
+			string s = stream.str();
+
+			string name = "planar_" + std::to_string(nodes) + "_" + std::to_string(edges) + "_" + std::to_string(instance + 1) + ".gml";
+
+			
+			//GraphIO::writeGML(GA, outputPath + name);
+			GraphIO::writeGML(GA, "graphs/" + name);
+
+		}
+
+	//}
 
 }

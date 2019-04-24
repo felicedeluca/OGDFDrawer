@@ -16,25 +16,24 @@ BOOLEAN printLog = false;
 void writeToFile(GraphAttributes GA, string full_path) {
 	ofstream myfile;
 
-	myfile.open(full_path);
+	myfile.open(full_path+".gml");
 
 	GraphIO::writeGML(GA, myfile);
+	GraphIO
 
+	
 	myfile.flush();
 	myfile.close();
 
 
 	cout << "\n" << full_path;
 
-
-	//	GraphIO::writeGML(GA, outputName);
-
 }
 
 //FMMM
 void drawWithFMMMLayout(GraphAttributes GA, string outputfilename) {
 
-	string outputName = outputPath + outputfilename + "_FMMM_drawing" + ".gml";
+	string outputName = outputPath + outputfilename + "_FMMM_drawing";
 
 
 	if (printLog) cout << "Drawing with FMMM\n";
@@ -65,7 +64,7 @@ void drawWithTreeLayout(GraphAttributes GA, string outputfilename) {
 	if (printLog) cout << "Drawing Tree.\n";
 
 
-	string outputName = outputPath + outputfilename + "_Tree_drawing" + ".gml";
+	string outputName = outputPath + outputfilename + "_Tree_drawing";
 	TreeLayout  layout;
 
 	QueryPerformanceCounter(&t1);
@@ -87,7 +86,7 @@ void drawWithRadialTreeLayout(GraphAttributes GA, string outputfilename) {
 	if(printLog) cout << "Drawing Radial Tree.\n";
 
 
-	string outputName =outputPath+ outputfilename+ "_RadTree_drawing"+".gml";
+	string outputName =outputPath+ outputfilename+ "_RadTree_drawing";
 	RadialTreeLayout  layout;
 
 	QueryPerformanceCounter(&t1);
@@ -110,7 +109,7 @@ void drawWithDavidsonHarelLayout(GraphAttributes GA, string outputfilename) {
 	if (printLog) cout << "Drawing with DH.\n";
 
 
-	string outputName = outputPath + outputfilename + "_DH_drawing" + ".gml";
+	string outputName = outputPath + outputfilename + "_DH_drawing";
 	DavidsonHarelLayout  layout;
 
 	QueryPerformanceCounter(&t1);
@@ -130,7 +129,7 @@ void drawWithSpringEmbedderKKLayout(GraphAttributes GA, string outputfilename) {
 
 	if (printLog) cout << "Drawing with KK.\n";
 
-	string outputName = outputPath + outputfilename + "_KK_drawing" + ".gml";
+	string outputName = outputPath + outputfilename + "_KK_drawing";
 	SpringEmbedderKK layout;
 	layout.setUseLayout(true);
 
@@ -151,7 +150,7 @@ void drawWithGEMLayout(GraphAttributes GA, string outputfilename) {
 
 	if (printLog) cout << "Drawing with GEM.\n";
 
-	string outputName = outputPath + outputfilename + "_GEM_drawing" + ".gml";
+	string outputName = outputPath + outputfilename + "_GEM_drawing";
 	GEMLayout gem;
 	gem.desiredLength(65);
 
@@ -174,7 +173,7 @@ void drawWithFRLayout(GraphAttributes GA, string outputfilename) {
 	if (printLog) cout << "Drawing with FR.\n";
 
 
-	string outputName = outputPath + outputfilename + "_FR_drawing" + ".gml";
+	string outputName = outputPath + outputfilename + "_FR_drawing";
 	SpringEmbedderFR  layout;
 
 	QueryPerformanceCounter(&t1);
@@ -196,7 +195,7 @@ void drawWithFRExactLayout(GraphAttributes GA, string outputfilename) {
 	if (printLog) cout << "Drawing with FR Exact.\n";
 
 
-	string outputName = outputPath + outputfilename + "_FRExact_drawing" + ".gml";
+	string outputName = outputPath + outputfilename + "_FRExact_drawing";
 	SpringEmbedderFRExact  layout;
 
 	QueryPerformanceCounter(&t1);
@@ -218,7 +217,7 @@ void drawWithFRLinLogLayout(GraphAttributes GA, string outputfilename) {
 	if (printLog) cout << "Drawing with LinLog.\n";
 
 
-	string outputName = outputPath + outputfilename + "_LinLog_drawing" + ".gml";
+	string outputName = outputPath + outputfilename + "_LinLog_drawing";
 	SpringEmbedderFRLinLog  layout;
 
 	QueryPerformanceCounter(&t1);
@@ -240,7 +239,7 @@ void drawWithFMMELayout(GraphAttributes GA, string outputfilename) {
 	if (printLog) cout << "Drawing with FMME.\n";
 
 
-	string outputName = outputPath + outputfilename + "_FMME_drawing" + ".gml";
+	string outputName = outputPath + outputfilename + "_FMME_drawing";
 	FastMultipoleMultilevelEmbedder layout;
 
 	QueryPerformanceCounter(&t1);
@@ -261,7 +260,7 @@ void drawWithMMMLayout(GraphAttributes GA, string outputfilename) {
 
 	if (printLog) cout << "Drawing with MMM.\n";
 
-	string outputName = outputPath + outputfilename + "_MMM_drawing" + ".gml";
+	string outputName = outputPath + outputfilename + "_MMM_drawing";
 	ModularMultilevelMixer layout;
 
 	QueryPerformanceCounter(&t1);
@@ -283,7 +282,7 @@ void drawWithSMLayout(GraphAttributes GA, string outputfilename) {
 
 	if (printLog) cout << "Drawing with SM.\n";
 
-	string outputName = outputPath + outputfilename + "_SM_drawing" + ".gml";
+	string outputName = outputPath + outputfilename + "_SM_drawing";
 	StressMinimization layout;
 	layout.hasInitialLayout(true);
 
@@ -306,7 +305,7 @@ void drawWithPlanarLayout(GraphAttributes GA, string outputfilename) {
 
 	if (printLog) cout << "Drawing with Planar Layout.\n";
 
-	string outputName = outputPath + outputfilename + "_Planar_drawing" + ".gml";
+	string outputName = outputPath + outputfilename + "_Planar_drawing";
 	PlanarDrawLayout layout;
 
 	QueryPerformanceCounter(&t1);

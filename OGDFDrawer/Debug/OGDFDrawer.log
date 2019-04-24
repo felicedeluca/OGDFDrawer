@@ -1,11 +1,12 @@
 ﻿  Drawer.cpp
-c:\users\felice de luca\desktop\ogdfdrawer\ogdfdrawer\drawer.cpp(452): warning C4244: 'argomento': conversione da 'time_t' a 'unsigned int'. Possibile perdita di dati.
-c:\users\felice de luca\desktop\ogdfdrawer\ogdfdrawer\drawer.cpp(493): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
-c:\users\felice de luca\desktop\ogdfdrawer\ogdfdrawer\drawer.cpp(513): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
-c:\users\felice de luca\desktop\ogdfdrawer\ogdfdrawer\drawer.cpp(534): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
-c:\users\felice de luca\desktop\ogdfdrawer\ogdfdrawer\drawer.cpp(553): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
-c:\users\felice de luca\desktop\ogdfdrawer\ogdfdrawer\drawer.cpp(574): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
-c:\users\felice de luca\desktop\ogdfdrawer\ogdfdrawer\drawer.cpp(594): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
-c:\users\felice de luca\desktop\ogdfdrawer\ogdfdrawer\drawer.cpp(614): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
-c:\users\felice de luca\desktop\ogdfdrawer\ogdfdrawer\drawer.cpp(633): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
-  OGDFDrawer.vcxproj -> C:\Users\Felice De Luca\Desktop\OGDFDrawer\Debug\OGDFDrawer.exe
+c:\users\felice de luca\documents\developer\ogdfdrawer\ogdfdrawer\drawer.cpp(452): warning C4244: 'argomento': conversione da 'time_t' a 'unsigned int'. Possibile perdita di dati.
+c:\users\felice de luca\documents\developer\ogdfdrawer\ogdfdrawer\drawer.cpp(493): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
+c:\users\felice de luca\documents\developer\ogdfdrawer\ogdfdrawer\drawer.cpp(513): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
+c:\users\felice de luca\documents\developer\ogdfdrawer\ogdfdrawer\drawer.cpp(534): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
+c:\users\felice de luca\documents\developer\ogdfdrawer\ogdfdrawer\drawer.cpp(553): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
+c:\users\felice de luca\documents\developer\ogdfdrawer\ogdfdrawer\drawer.cpp(574): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
+c:\users\felice de luca\documents\developer\ogdfdrawer\ogdfdrawer\drawer.cpp(594): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
+c:\users\felice de luca\documents\developer\ogdfdrawer\ogdfdrawer\drawer.cpp(614): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
+c:\users\felice de luca\documents\developer\ogdfdrawer\ogdfdrawer\drawer.cpp(633): warning C4244: 'argomento': conversione da 'double' a 'DWORD'. Possibile perdita di dati.
+  OGDFDrawer.vcxproj -> C:\Users\Felice De Luca\Documents\Developer\OGDFDrawer\Debug\OGDFDrawer.exe
+  OGDFDrawer.vcxproj -> C:\Users\Felice De Luca\Documents\Developer\OGDFDrawer\Debug\OGDFDrawer.pdb (Full PDB)

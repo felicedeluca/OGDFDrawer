@@ -1,12 +1,10 @@
-﻿Compilazione avviata 02/05/2016 15:07:25.
-     1>Progetto "C:\Users\Felice\Documents\Developer\VisualStudio\OGDFDrawer\OGDFDrawer\OGDFDrawer.vcxproj" sul nodo 2 (destinazioni: Build).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
-         Main.cpp
-     1>Main.cpp(2): fatal error C1083: Impossibile aprire il file inclusione 'ogdf/basic/Graph.h': No such file or directory
-     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets(347,5): error MSB6006: "CL.exe" terminato con il codice 2.
-     1>Compilazione progetto "C:\Users\Felice\Documents\Developer\VisualStudio\OGDFDrawer\OGDFDrawer\OGDFDrawer.vcxproj" (destinazioni: Build) NON COMPLETATA.
-
-Compilazione NON RIUSCITA.
-
-Tempo trascorso 00:00:00.20
+﻿  BundleGenerator.cpp
+BundleGenerator.cpp(1): fatal error C1083: Non è possibile aprire il file inclusione: 'BundleGenerator.h': No such file or directory
+  Converter.cpp
+Converter.cpp(1): fatal error C1083: Non è possibile aprire il file inclusione: 'Converter.h': No such file or directory
+  Drawer.cpp
+Drawer.cpp(1): fatal error C1083: Non è possibile aprire il file inclusione: 'Drawer.h': No such file or directory
+  Main.cpp
+Main.cpp(9): fatal error C1083: Non è possibile aprire il file inclusione: 'Drawer.h': No such file or directory
+  SpringEmbedderFRLinLog.cpp
+SpringEmbedderFRLinLog.cpp(44): fatal error C1083: Non è possibile aprire il file inclusione: 'SpringEmbedderFRLinLog.h': No such file or directory

@@ -27,19 +27,61 @@ bool cmdOptionExists(char** begin, char** end, const std::string& option)
 	return std::find(begin, end, option) != end;
 }
 
-
+/*
 
 int main(int argc, char* argv[])
 {
+
+	BundleGenerator generator;
+	generator.generatePlanarGraphs("");
 
 	if (cmdOptionExists(argv, argv + argc, "-h"))
 	{
 		// Do stuff
 	}
 
-	char * draw = getCmdOption(argv, argv + argc, "-DRAW");
 	
-	if (draw) {
+
+	if (getCmdOption(argv, argv + argc, "-GEN")) {
+
+		char * generate = getCmdOption(argv, argv + argc, "-GEN");
+
+		char * output = getCmdOption(argv, argv + argc, "-o");
+
+		string gen_string = string(generate);
+		cout << "Generating: " << gen_string;
+
+		if (output)
+		{
+
+
+			string output_string = string(output);
+			cout << "output: " << output_string << "\n";
+
+
+			try
+			{
+				BundleGenerator generator;
+				generator.generatePlanarGraphs(output_string);
+
+			}
+			catch (int e)
+			{
+			}
+
+			return (0);
+
+		}
+		else {
+			cout << "missing output (-o)";
+			return (-1);
+		}
+
+		return (0);
+
+	}else if (getCmdOption(argv, argv + argc, "-DRAW")) {
+
+		char * draw = getCmdOption(argv, argv + argc, "-DRAW");
 
 		char * input = getCmdOption(argv, argv + argc, "-i");
 		char * output = getCmdOption(argv, argv + argc, "-o");
@@ -65,6 +107,8 @@ int main(int argc, char* argv[])
 			{
 			}
 
+			return (0);
+
 		}
 		else {
 			cout << "missing input and output (-i -o)";
@@ -72,50 +116,9 @@ int main(int argc, char* argv[])
 		}
 
 		return (0);
-	}
+	}else if (getCmdOption(argv, argv + argc, "-CONVERT")) {
 
-
-
-	char * generate = getCmdOption(argv, argv + argc, "-GEN");
-
-	if (generate) {
-
-		char * output = getCmdOption(argv, argv + argc, "-o");
-
-		string gen_string = string(generate);
-		cout << "Generating: " << gen_string;
-
-		if (output)
-		{
-
-
-			string output_string = string(output);
-			cout << "output: " << output_string << "\n";
-
-
-			try
-			{
-				BundleGenerator generator;
-				generator.generatePlanarGraphs(output_string);
-
-			}
-			catch (int e)
-			{
-			}
-
-		}
-		else {
-			cout << "missing output (-o)";
-			return (-1);
-		}
-
-		return (0);
-
-	}
-
-	char * convert = getCmdOption(argv, argv + argc, "-CONVERT");
-
-	if (convert) {
+		char * convert = getCmdOption(argv, argv + argc, "-CONVERT");
 
 		char * input = getCmdOption(argv, argv + argc, "-i");
 		char * output = getCmdOption(argv, argv + argc, "-o");
@@ -137,6 +140,9 @@ int main(int argc, char* argv[])
 			catch (int e)
 			{
 			}
+
+			return (0);
+
 
 		}
 		else {
@@ -216,3 +222,5 @@ int main(int argc, char* argv[])
 
 }
 //end of the main
+
+*/
